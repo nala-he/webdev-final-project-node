@@ -1,12 +1,13 @@
+// for local testing, should delete and retrieve data from mongodb atlas later
 import people from './users.js'
 let users = people
 
 const UserController = (app) => {
-    app.get('/api/users', findUsers);
-    app.get('/api/users/:uid', findUsersById);
-    app.post('/api/users', createUser);
-    app.delete('/api/users/:uid', deleteUser);
-    app.put('/api/users/:uid', updateUser);
+    app.get('/fridge/users', findUsers);
+    app.get('/fridge/users/:uid', findUsersById);
+    app.post('/fridge/users', createUser);
+    app.delete('/fridge/users/:uid', deleteUser);
+    app.put('/fridge/users/:uid', updateUser);
 }
 
 const findUsers = (req, res) => {
