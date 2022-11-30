@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
+import FridgeIngredientsController
+    from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
 
 const app = express();
 app.use(cors());
@@ -34,5 +36,6 @@ app.get('/hello', (req, res) =>
     res.send('Hello World!'));
 
 UsersController(app);
+FridgeIngredientsController(app);
 
 app.listen(process.env.PORT || 4000);
