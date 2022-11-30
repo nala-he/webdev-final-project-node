@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
+import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-controller.js";
 
 const app = express();
 app.use(cors());
@@ -34,5 +35,6 @@ app.get('/hello', (req, res) =>
     res.send('Hello World!'));
 
 UsersController(app);
+SavedRecipesController(app);
 
 app.listen(process.env.PORT || 4000);
