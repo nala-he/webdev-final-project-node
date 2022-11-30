@@ -1,7 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 
 const savedRecipesSchema = mongoose.Schema({
-    savedBy: {type: Schema.Types.ObjectId, ref: "UserModel", required: true},
+    savedBy: {type: Schema.Types.ObjectId, ref: "UsersModel", required: true},
     recipe: {type: Schema.Types.ObjectId, ref: "RecipeModel", required: true},
 }, {collection: "saved-recipes"});
 
