@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import cors from "cors";
 import mongoose from "mongoose";
-import UsersController from "./controllers/users/user-controller.js";
+import UsersController from "./controllers/users/users-controller.js";
 
 const app = express();
 app.use(cors());

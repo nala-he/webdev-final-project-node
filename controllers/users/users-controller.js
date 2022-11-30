@@ -2,7 +2,7 @@
 import people from './users.js'
 let users = people
 
-const UserController = (app) => {
+const UsersController = (app) => {
     app.get('/fridge/users', findUsers);
     app.get('/fridge/users/:uid', findUsersById);
     app.post('/fridge/users', createUser);
@@ -50,4 +50,4 @@ const updateUser = (req, res) => {
     res.sendStatus(200);
 }
 
-export default UserController
+export default UsersController
