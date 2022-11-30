@@ -4,7 +4,7 @@ const UsersSchema = mongoose.Schema({
     username: {type: String, required: true},
     firstName: String,
     lastName: String,
-    type: {type: String, enum: ['REG USER', 'PRO CHIEF', 'RECIPE CREATOR'], default: 'REG USER',
+    type: {type: String, enum: ['REG USER', 'PRO CHEF', 'RECIPE CREATOR'], default: 'REG USER',
         required: true},
     avatar: String,
     bio: String,
