@@ -25,12 +25,12 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const status = await usersDao.updateUser(req.params.uid, req.body);
-    res.sendStatus(status);
+    res.json(status);
 }
 
 const deleteUser = async (req, res) => {
-    const status = usersDao.deleteUser(req.params.uid);
-    res.sendStatus(status);
+    const status = await usersDao.deleteUser(req.params.uid);
+    res.json(status);
 }
 
 export default UsersController

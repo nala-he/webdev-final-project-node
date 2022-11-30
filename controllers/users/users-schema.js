@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import UsersType from "./users-type.js";
 
 const UsersSchema = mongoose.Schema({
     username: {type: String, required: true},
     firstName: String,
     lastName: String,
-    type: {type: UsersType, required: true},
+    type: {type: String, enum: ['REG USER', 'PRO CHIEF', 'RECIPE CREATOR'], default: 'REG USER',
+        required: true},
     avatar: String,
     bio: String,
     business: String,
