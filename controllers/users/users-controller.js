@@ -1,6 +1,4 @@
-// for local testing, should delete and retrieve data from mongodb atlas later
-import people from './users.js'
-let users = people
+import * as usersDao from '../users/users-dao.js';
 
 const UsersController = (app) => {
     app.get('/fridge/users', findUsers);
@@ -10,44 +8,29 @@ const UsersController = (app) => {
     app.put('/fridge/users/:uid', updateUser);
 }
 
-const findUsers = (req, res) => {
-    const type = req.query.type
-    if(type) {
-        const usersOfType = users
-            .filter(u => u.type === type)
-        res.json(usersOfType)
-        return
-    }
-
-    res.json(users)
-}
-
-const findUsersById = (req, res) => {
-    const userId = req.params.uid;
-    const user = users.find(u => u._id === userId);
-    res.json(user);
-}
-
-const createUser = (req, res) => {
-    const newUser = req.body;
-    newUser._id = (new Date()).getTime() + '';
-    users.push(newUser);
+const findUsers = async (req, res) => {
+    const users = await usersDao.findUsers();
     res.json(users);
 }
 
-const deleteUser = (req, res) => {
-    const userId = req.params['uid'];
-    users = users.filter(usr => usr._id !== userId);
-    res.sendStatus(200);
+const findUsersById = async (req, res) => {
+    const user = await usersDao.findUserById(req.params.uid);
+    res.json(user);
 }
 
-const updateUser = (req, res) => {
-    const userId = req.params['uid'];
-    const updates = req.body;
-    users = users.map((usr) =>
-                          usr._id === userId ? {...usr, ...updates} : usr
-    );
-    res.sendStatus(200);
+const createUser = async (req, res) => {
+    const user = await usersDao.createUser(req.body);
+    res.json(user);
+}
+
+const updateUser = async (req, res) => {
+    const status = await usersDao.updateUser(req.params.uid, req.body);
+    res.sendStatus(status);
+}
+
+const deleteUser = async (req, res) => {
+    const status = usersDao.deleteUser(req.params.uid);
+    res.sendStatus(status);
 }
 
 export default UsersController
