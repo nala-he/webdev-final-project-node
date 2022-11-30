@@ -1,4 +1,5 @@
 import express from "express";
+import dotenv from 'dotenv';
 import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
@@ -7,6 +8,7 @@ import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-co
 const app = express();
 app.use(cors());
 app.use(express.json());
+dotenv.config();
 
 // build the connection string
 const PROTOCOL = "mongodb+srv";
