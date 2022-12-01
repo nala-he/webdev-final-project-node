@@ -13,7 +13,8 @@ const RecipesSchema = mongoose.Schema({
     calories: {type: Number, required: true},
     fat: {type: String, required: true},
     carbs: {type: String, required: true},
-    protein: {type: String, required: true}
+    protein: {type: String, required: true},
+    privacy: {type: String, enum: ['PUBLIC', 'PRIVATE'], default: 'PUBLIC'}
 }, {collection:"recipes"});
 
 export default RecipesSchema;
