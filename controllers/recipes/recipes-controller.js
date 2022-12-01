@@ -10,17 +10,17 @@ const RecipesController = (app) => {
 
 const findRecipes = async (req, res) => {
     const recipes = await RecipesDao.findRecipes();
-    res.json(recipes);
+    res.send(recipes);
 }
 
 const findRecipeById = async (req, res) => {
     const recipe = await RecipesDao.findRecipeById(req.params.rid);
-    res.json(recipe);
+    res.send(recipe);
 }
 
 const findRecipesByAuthor = async (req, res) => {
     const recipes = await RecipesDao.findRecipesByAuthor(req.params.uid);
-    res.json(recipes);
+    res.send(recipes);
 }
 
 const createRecipe = async (req, res) => {
@@ -30,7 +30,7 @@ const createRecipe = async (req, res) => {
 
 const deleteRecipe = async (req, res) => {
     const status = await RecipesDao.deleteRecipe(req.params.rid);
-    res.json(status);
+    res.send(status);
 }
 
 export default RecipesController
