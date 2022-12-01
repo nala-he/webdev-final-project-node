@@ -15,15 +15,14 @@ const signup = async (req, res) => {
     const hash = await bcrypt.hash(password, saltRounds);
     newUser.password = hash;
 
-    const existingUser = await usersDao
-        .findUserByUsername(req.body.username);
+    const existingUser = await usersDao.findUserByUsername(req.body.username);
     if (existingUser) {
         res.sendStatus(403);
         return;
     } else {
         const insertedUser = await usersDao
             .createUser(newUser);
-        insertedUser.setPassword('');
+        insertedUser.password= '';
         req.session['profile'] = insertedUser;
         return res.json(insertedUser);
     }
@@ -48,16 +47,14 @@ const login = async (req, res) => {
     const user = req.body;
     const username = user.username;
     const password = user.password;
-    const existingUser = await usersDao
-        .findUserByUsername(username);
+    const existingUser = await usersDao.findUserByUsername(username);
 
     if (!existingUser) {
         res.sendStatus(403);
         return;
     }
 
-    const match = await bcrypt
-        .compare(password, existingUser.password);
+    const match = await bcrypt.compare(password, existingUser.password);
 
     if (match) {
         existingUser.password = '*****';
