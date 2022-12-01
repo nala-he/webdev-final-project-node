@@ -1,6 +1,6 @@
 import * as usersDao from "../users/users-dao.js";
-import bcrypt from "bcrypt";
-const saltRounds = 10;
+// import bcrypt from "bcrypt";
+// const saltRounds = 10;
 
 const AuthenticationController = (app) => {
     app.post("/fridge/auth/signup", signup);
@@ -11,9 +11,10 @@ const AuthenticationController = (app) => {
 
 const signup = async (req, res) => {
     const newUser = req.body;
-    const password = newUser.password;
-    const hash = await bcrypt.hash(password, saltRounds);
-    newUser.password = hash;
+    // I will add the following back after testing on previously existed users
+    // const password = newUser.password;
+    // const hash = await bcrypt.hash(password, saltRounds);
+    // newUser.password = hash;
 
     const existingUser = await usersDao.findUserByUsername(req.body.username);
     if (existingUser) {
