@@ -5,3 +5,4 @@ export const findUserById = (uid) => usersModel.findById(uid);
 export const createUser = (user) => usersModel.create(user);
 export const updateUser = (uid, user) => usersModel.updateOne({_id: uid}, {$set: user})
 export const deleteUser = (uid) => usersModel.deleteOne({_id: uid});
+export const findUserByUsername = (username) => usersModel.findOne({username});
