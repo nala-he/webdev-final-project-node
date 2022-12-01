@@ -4,7 +4,7 @@ const RecipeIngredientsController = (app) => {
     app.get('/fridge/recipe-ingredients', findRecipeIngredients);
     app.get('/fridge/recipe-ingredients/:ingredientId', findRecipeIngredientById);
     app.get('/fridge/recipes/:rid/ingredients', findIngredientsForRecipe);
-    app.post('/fridge/recipes-ingredients', createRecipeIngredient);
+    app.post('/fridge/recipe-ingredients', createRecipeIngredient);
     app.delete('/fridge/recipe-ingredients/:ingredientId', deleteRecipeIngredient);
 }
 
