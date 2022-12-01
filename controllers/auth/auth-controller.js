@@ -59,7 +59,7 @@ const login = async (req, res) => {
     const match = (password === existingUser.password);
 
     if (match) {
-        existingUser.password = '*****';
+        // existingUser.password = '*****';
         req.session['profile'] = existingUser;
         return res.json(existingUser);
     } else {
