@@ -12,7 +12,7 @@ const RecipesSchema = mongoose.Schema({
     totalTime: {type: String, required: true},
     servings: {type: Number, required: true},
     difficulty: {type: String, required: true},
-    calories: {type: String, required: true},
+    calories: {type: Number, required: true},
     fat: {type: String, required: true},
     carbs: {type: String, required: true},
     protein: {type: String, required: true}
