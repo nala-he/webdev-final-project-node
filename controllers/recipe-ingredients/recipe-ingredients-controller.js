@@ -3,7 +3,7 @@ import * as RecipeIngredientsDao from "./recipe-ingredients-dao.js"
 const RecipeIngredientsController = (app) => {
     app.get('/fridge/recipe-ingredients', findRecipeIngredients);
     app.get('/fridge/recipe-ingredients/:ingredientId', findRecipeIngredientById);
-    app.get('/fridge/recipes/:rid/ingredients', findIngredientsForRecipe);
+    app.get('/fridge/recipes/:recipeId/ingredients', findIngredientsForRecipe);
     app.post('/fridge/recipe-ingredients', createRecipeIngredient);
     app.delete('/fridge/recipe-ingredients/:ingredientId', deleteRecipeIngredient);
 }
