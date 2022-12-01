@@ -1,7 +1,7 @@
 import mongoose, {Schema} from 'mongoose';
 
 const RecipesSchema = mongoose.Schema({
-    authorId: {type: Schema.Types.ObjectId, ref: "UserModel",required: true},
+    authorId: {type: Schema.Types.ObjectId, ref: "UsersModel",required: true},
     dishName: {type: String, required: true},
     intro: {type: String, required: true},
     recipePic: {type: String, default: "emptyRecipe.jpg"},
