@@ -3,7 +3,7 @@ import * as RecipeDirectionsDao from "./recipe-directions-dao.js"
 const RecipeDirectionsController = (app) => {
     app.get('/fridge/recipe-directions', findRecipeDirections);
     app.get('/fridge/recipe-directions/:directionId', findRecipeDirectionById);
-    app.get('/fridge/recipes/:rid/directions', findDirectionsForRecipe);
+    app.get('/fridge/recipes/:recipeId/directions', findDirectionsForRecipe);
     app.post('/fridge/recipe-directions', createRecipeDirection);
     app.delete('/fridge/recipe-directions/:directionId', deleteRecipeDirection);
 }
