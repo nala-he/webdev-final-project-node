@@ -55,7 +55,8 @@ const login = async (req, res) => {
         return;
     }
 
-    const match = await bcrypt.compare(password, existingUser.password);
+    // const match = await bcrypt.compare(password, existingUser.password);
+    const match = (password === existingUser.password);
 
     if (match) {
         existingUser.password = '*****';
