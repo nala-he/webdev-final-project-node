@@ -4,8 +4,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
 import AuthenticationController from "./controllers/auth/auth-controller.js";
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
 const app = express();
 const corsConfig = {

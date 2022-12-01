@@ -23,7 +23,7 @@ const signup = async (req, res) => {
     } else {
         const insertedUser = await usersDao
             .createUser(newUser);
-        insertedUser.password= '';
+        insertedUser.password = '';
         req.session['profile'] = insertedUser;
         return res.json(insertedUser);
     }
