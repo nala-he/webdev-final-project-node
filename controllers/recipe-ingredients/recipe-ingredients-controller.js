@@ -1,11 +1,11 @@
 import * as RecipeIngredientsDao from "./recipe-ingredients-dao.js"
 
 const RecipeIngredientsController = (app) => {
-    app.get('/fridge/recipes', findRecipeIngredients);
-    app.get('/fridge/recipes/:rid', findRecipeIngredientById);
-    app.get('/fridge/users/:uid/recipes', findIngredientsForRecipe);
-    app.post('/fridge/recipes', createRecipeIngredient);
-    app.delete('/fridge/recipes/:rid', deleteRecipeIngredient);
+    app.get('/fridge/recipe-ingredients', findRecipeIngredients);
+    app.get('/fridge/recipe-ingredients/:ingredientId', findRecipeIngredientById);
+    app.get('/fridge/recipes/:rid/ingredients', findIngredientsForRecipe);
+    app.post('/fridge/recipes-ingredients', createRecipeIngredient);
+    app.delete('/fridge/recipe-ingredients/:ingredientId', deleteRecipeIngredient);
 }
 
 const findRecipeIngredients = async (req, res) => {
