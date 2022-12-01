@@ -3,9 +3,15 @@ import dotenv from 'dotenv';
 import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
+
 import AuthenticationController from "./controllers/auth/auth-controller.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+
+import RecipesController from "./controllers/recipes/recipes-controller.js";
+import FridgeIngredientsController
+    from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
+
 
 const app = express();
 const corsConfig = {
@@ -67,6 +73,11 @@ app.get('/hello', (req, res) =>
     res.send('Hello World!'));
 
 UsersController(app);
+
 AuthenticationController(app);
+
+RecipesController(app);
+FridgeIngredientsController(app);
+
 
 app.listen(process.env.PORT || 4000);
