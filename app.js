@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
+import RecipesController from "./controllers/recipes/recipes-controller.js";
 import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-controller.js";
 
 const app = express();
@@ -37,6 +38,7 @@ app.get('/hello', (req, res) =>
     res.send('Hello World!'));
 
 UsersController(app);
+RecipesController(app);
 SavedRecipesController(app);
 
 app.listen(process.env.PORT || 4000);
