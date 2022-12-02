@@ -2,6 +2,8 @@ import mongoose, {Schema} from 'mongoose';
 
 const RecipesSchema = mongoose.Schema({
     authorId: {type: Schema.Types.ObjectId, ref: "UsersModel"},
+    avatar: {type: String, default:undefined},
+    authorName: {type: String, default:undefined},
     dishName: {type: String, default:undefined},
     intro: {type: String, default:undefined},
     recipePic: {type: String, default: "emptyRecipe.jpg"},
