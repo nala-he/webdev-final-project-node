@@ -4,7 +4,7 @@ const RecipesController = (app) => {
     app.get('/fridge/recipes', findRecipes);
     app.get('/fridge/recipes/:rid', findRecipeById);
     app.get('/fridge/users/:uid/recipes', findRecipesByAuthor);
-    app.post('/fridge/recipes', createRecipe);
+    app.post('/fridge/users/:uid/recipes', createRecipe);
     app.delete('/fridge/recipes/:rid', deleteRecipe);
 }
 
@@ -24,7 +24,7 @@ const findRecipesByAuthor = async (req, res) => {
 }
 
 const createRecipe = async (req, res) => {
-    const recipe = await RecipesDao.createRecipe(req.body);
+    const recipe = await RecipesDao.createRecipe(req.uid);
     res.json(recipe);
 }
 
