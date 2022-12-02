@@ -9,6 +9,8 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 
 import RecipesController from "./controllers/recipes/recipes-controller.js";
+import RecipeDirectionsController from "./controllers/recipe-directions/recipe-directions-controller.js";
+import RecipeIngredientsController from "./controllers/recipe-ingredients/recipe-ingredients-controller.js";
 import FridgeIngredientsController
     from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
 
@@ -77,6 +79,8 @@ UsersController(app);
 AuthenticationController(app);
 
 RecipesController(app);
+RecipeDirectionsController(app);
+RecipeIngredientsController(app);
 FridgeIngredientsController(app);
 
 
