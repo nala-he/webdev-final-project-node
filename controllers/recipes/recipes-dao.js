@@ -19,3 +19,5 @@ export const createRecipe = async (uid) => {
 }
 
 export const deleteRecipe = (rid) => RecipesModel.deleteOne({_id: rid});
+
+export const updateRecipe = (rid, recipe) => RecipesModel.updateOne({_id: rid}, {$set: recipe});

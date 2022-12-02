@@ -6,6 +6,7 @@ const RecipesController = (app) => {
     app.get('/fridge/users/:uid/recipes', findRecipesByAuthor);
     app.post('/fridge/users/:uid/recipes', createRecipe);
     app.delete('/fridge/recipes/:rid', deleteRecipe);
+    app.put('/fridge/recipes/:rid', updateRecipe);
 }
 
 const findRecipes = async (req, res) => {
@@ -31,6 +32,11 @@ const createRecipe = async (req, res) => {
 const deleteRecipe = async (req, res) => {
     const status = await RecipesDao.deleteRecipe(req.params.rid);
     res.send(status);
+}
+
+const updateRecipe = async (req, res) => {
+    const status = await RecipesDao.updateRecipe(req.params.rid, req.body);
+    res.json(status);
 }
 
 export default RecipesController
