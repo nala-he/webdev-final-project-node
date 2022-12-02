@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
 import RecipesController from "./controllers/recipes/recipes-controller.js";
+import RecipeDirectionsController from "./controllers/recipe-directions/recipe-directions-controller.js";
 import RecipeIngredientsController from "./controllers/recipe-ingredients/recipe-ingredients-controller.js";
 import FridgeIngredientsController
     from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
@@ -41,6 +42,7 @@ app.get('/hello', (req, res) =>
 
 UsersController(app);
 RecipesController(app);
+RecipeDirectionsController(app);
 RecipeIngredientsController(app);
 FridgeIngredientsController(app);
 
