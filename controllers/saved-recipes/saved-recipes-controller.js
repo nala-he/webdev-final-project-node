@@ -8,7 +8,7 @@ const SavedRecipesController = (app) => {
     app.get('/fridge/recipes/:rid/saved-recipes', findSavedRecipesByRecipe);
     app.put('/fridge/saved-recipes/:savedRecipeId', updateSavedRecipe);
     app.delete('/fridge/saved-recipes/:savedRecipeId', deleteSavedRecipe);
-    app.delete('/fridge/users/:uid/saved-recipes/recipes/:rid', deleteSavedRecipeByUserAndRecipeId);
+    app.delete('/fridge/users/:uid/recipes/:rid/saved-recipes', deleteSavedRecipeByUserAndRecipeId);
 }
 
 const createSavedRecipe = async (req, res) => {
