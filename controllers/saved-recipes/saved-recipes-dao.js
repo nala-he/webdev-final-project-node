@@ -58,3 +58,8 @@ export const deleteSavedRecipe = async (savedRecipeId) => {
     const status = await savedRecipesModel.deleteOne({_id: savedRecipeId});
     return status;
 }
+
+export const deleteSavedRecipeByUserAndRecipeId = async (uid, rid) => {
+    const status = await savedRecipesModel.deleteOne({savedBy: uid, recipe: rid});
+    return status;
+}

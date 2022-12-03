@@ -8,6 +8,7 @@ const SavedRecipesController = (app) => {
     app.get('/fridge/recipes/:rid/saved-recipes', findSavedRecipesByRecipe);
     app.put('/fridge/saved-recipes/:savedRecipeId', updateSavedRecipe);
     app.delete('/fridge/saved-recipes/:savedRecipeId', deleteSavedRecipe);
+    app.delete('/fridge/users/:uid/saved-recipes/recipes/:rid', deleteSavedRecipeByUserAndRecipeId);
 }
 
 const createSavedRecipe = async (req, res) => {
@@ -50,6 +51,13 @@ const updateSavedRecipe = async (req, res) => {
 const deleteSavedRecipe = async (req, res) => {
     const savedRecipeId = req.params['savedRecipeId'];
     const status = await savedRecipesDao.deleteSavedRecipe(savedRecipeId);
+    res.send(status);
+}
+
+const deleteSavedRecipeByUserAndRecipeId = async (req, res) => {
+    const uid = req.params.uid;
+    const rid = req.params.rid;
+    const status = await savedRecipesDao.deleteSavedRecipeByUserAndRecipeId(uid, rid);
     res.send(status);
 }
 
