@@ -1,6 +1,4 @@
 import * as usersDao from "../users/users-dao.js";
-// import bcrypt from "bcrypt";
-// const saltRounds = 10;
 
 const AuthenticationController = (app) => {
     app.post("/fridge/auth/signup", signup);
