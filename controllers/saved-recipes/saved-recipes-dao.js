@@ -33,7 +33,6 @@ export const findSavedRecipesByUser = async (uid) => {
         await savedRecipesModel
             .find({savedBy: uid})
             .populate("recipe")
-            .populate("savedBy")
             .exec();
     return recipesSavedByUser;
 }
