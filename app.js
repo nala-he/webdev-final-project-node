@@ -3,6 +3,11 @@ import dotenv from 'dotenv';
 import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./controllers/users/users-controller.js";
+
+import AuthenticationController from "./controllers/auth/auth-controller.js";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+
 import RecipesController from "./controllers/recipes/recipes-controller.js";
 import RecipeDirectionsController from "./controllers/recipe-directions/recipe-directions-controller.js";
 import RecipeIngredientsController from "./controllers/recipe-ingredients/recipe-ingredients-controller.js";
@@ -10,8 +15,16 @@ import FridgeIngredientsController
     from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
 import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-controller.js";
 
+
 const app = express();
-app.use(cors());
+const corsConfig = {
+    origin: ['http://localhost:3000'],
+    methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+
+app.use(cors(corsConfig));
 app.use(express.json());
 dotenv.config();
 
@@ -34,6 +47,27 @@ const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${
 // connect to the database
 mongoose.connect(connectionString)
 
+
+let sess = {
+    // secret: process.env.REACT_APP_API_BASE,
+    secret: "http://localhost:3000",
+    cookie: {
+        secure: false
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+                                 mongoUrl: connectionString
+                             })
+}
+
+if (process.env.ENV === 'PRODUCTION') {
+    app.set('trust proxy', 1)
+    sess.cookie.secure = true
+}
+
+app.use(session(sess));
+
 // test if the server is running
 app.get('/', (req, res) =>
     res.send('Welcome to RecipeFridge!'));
@@ -42,10 +76,14 @@ app.get('/hello', (req, res) =>
     res.send('Hello World!'));
 
 UsersController(app);
+
+AuthenticationController(app);
+
 RecipesController(app);
 RecipeDirectionsController(app);
 RecipeIngredientsController(app);
 FridgeIngredientsController(app);
 SavedRecipesController(app);
+
 
 app.listen(process.env.PORT || 4000);
