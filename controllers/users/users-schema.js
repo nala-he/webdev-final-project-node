@@ -6,7 +6,7 @@ const UsersSchema = mongoose.Schema({
     lastName: String,
     type: {type: String, enum: ['REG USER', 'PRO CHEF', 'RECIPE CREATOR'], default: 'REG USER',
         required: true},
-    avatar: String,
+    avatar: {type: String, default: 'emptyAvatar.png'},
     bio: String,
     business: String,
     password: {type: String, required: true}
