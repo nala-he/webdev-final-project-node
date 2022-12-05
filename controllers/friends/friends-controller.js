@@ -1,9 +1,9 @@
 import * as friendsDao from './friends-dao.js'
 
 const FriendsController = (app) => {
-    app.post('/follows', followUser)
-    app.get('/users/:uid/following', findUsersIamFollowing)
-    app.get('/users/:uid/followedBy', findUsersIamFollowedBy)
+    app.post('/fridge/friends', followUser)
+    app.get('/fridge/users/:uid/following', findUsersIamFollowing)
+    app.get('/fridge/users/:uid/followedBy', findUsersIamFollowedBy)
 }
 
 const followUser = async (req, res) => {
