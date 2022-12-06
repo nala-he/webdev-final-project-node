@@ -4,6 +4,7 @@ const FriendsController = (app) => {
     app.post('/fridge/friends', followUser)
     app.get('/fridge/users/:uid/following', findUsersIamFollowing)
     app.get('/fridge/users/:uid/followedBy', findUsersIamFollowedBy)
+    app.get('/fridge/friends', findAllFriendsPairs)
 }
 
 const followUser = async (req, res) => {
@@ -25,5 +26,9 @@ const findUsersIamFollowedBy = async (req, res) => {
     const followedBys = await friendsDao.findUsersIamFollowedBy(me)
     res.json(followedBys)
 }
+
+const findAllFriendsPairs = (req, res) =>
+    friendsDao.findAllFriendsPairs()
+        .then(data => res.json(data));
 
 export default FriendsController;
