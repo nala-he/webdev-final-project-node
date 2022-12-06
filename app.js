@@ -13,6 +13,7 @@ import RecipeDirectionsController from "./controllers/recipe-directions/recipe-d
 import RecipeIngredientsController from "./controllers/recipe-ingredients/recipe-ingredients-controller.js";
 import FridgeIngredientsController
     from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
+import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-controller.js";
 
 
 const app = express();
@@ -82,6 +83,7 @@ RecipesController(app);
 RecipeDirectionsController(app);
 RecipeIngredientsController(app);
 FridgeIngredientsController(app);
+SavedRecipesController(app);
 
 
 app.listen(process.env.PORT || 4000);
