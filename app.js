@@ -14,6 +14,8 @@ import RecipeIngredientsController from "./controllers/recipe-ingredients/recipe
 import FridgeIngredientsController
     from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
 import FriendsController from "./controllers/friends/friends-controller.js";
+import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-controller.js";
+
 
 const app = express();
 const corsConfig = {
@@ -81,5 +83,7 @@ RecipeDirectionsController(app);
 RecipeIngredientsController(app);
 FridgeIngredientsController(app);
 FriendsController(app);
+SavedRecipesController(app);
+
 
 app.listen(process.env.PORT || 4000);

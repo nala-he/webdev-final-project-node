@@ -6,7 +6,7 @@ const RecipesSchema = mongoose.Schema({
     authorName: {type: String, default:undefined},
     dishName: {type: String, default:undefined},
     intro: {type: String, default:undefined},
-    recipePic: {type: String, default: "emptyRecipe.jpg"},
+    recipePic: {type: String, default: undefined},
     prepTime: {type: String, default:undefined},
     cookTime: {type: String, default:undefined},
     totalTime: {type: String, default:undefined},
