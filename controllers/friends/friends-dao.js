@@ -18,3 +18,6 @@ export const findUsersIamFollowedBy = (following) =>
 
 export const findAllFriendsPairs = () =>
     friendsModel.find();
+
+export const deleteFriendsByFollower = (followedBy) =>
+    friendsModel.deleteMany({followedBy})
