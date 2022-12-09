@@ -13,6 +13,7 @@ import RecipeDirectionsController from "./controllers/recipe-directions/recipe-d
 import RecipeIngredientsController from "./controllers/recipe-ingredients/recipe-ingredients-controller.js";
 import FridgeIngredientsController
     from "./controllers/fridge-ingredients/fridge-ingredients-controller.js";
+import FriendsController from "./controllers/friends/friends-controller.js";
 import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-controller.js";
 
 
@@ -76,13 +77,12 @@ app.get('/hello', (req, res) =>
     res.send('Hello World!'));
 
 UsersController(app);
-
 AuthenticationController(app);
-
 RecipesController(app);
 RecipeDirectionsController(app);
 RecipeIngredientsController(app);
 FridgeIngredientsController(app);
+FriendsController(app);
 SavedRecipesController(app);
 
 
