@@ -1,10 +1,16 @@
 import * as savedRecipesDao from "./saved-recipes-dao.js";
+import {
+    createSavedSpoonacularRecipe,
+    findSavedSpoonacularRecipeByUser
+} from "./saved-recipes-dao.js";
 
 const SavedRecipesController = (app) => {
     app.post('/fridge/users/:uid/saved-recipes/:rid', createSavedRecipe);
+    app.post('/fridge/users/:uid/saved-spoonaculars/:rid', createSavedSpoonacularRecipe);
     app.get('/fridge/saved-recipes', findAllSavedRecipes);
     app.get('/fridge/saved-recipes/:savedRecipeId', findSavedRecipeById);
     app.get('/fridge/users/:uid/saved-recipes', findSavedRecipesByUser);
+    app.get('/fridge/users/:uid/saved-spoonaculars', findSavedSpoonacularRecipesByUser);
     app.get('/fridge/recipes/:rid/saved-recipes', findSavedRecipesByRecipe);
     app.put('/fridge/saved-recipes/:savedRecipeId', updateSavedRecipe);
     app.delete('/fridge/saved-recipes/:savedRecipeId', deleteSavedRecipe);
@@ -15,6 +21,13 @@ const createSavedRecipe = async (req, res) => {
     const userId = req.params.uid;
     const recipeId = req.params.rid;
     const actualSavedRecipe = await savedRecipesDao.createSavedRecipe(userId, recipeId);
+    res.json(actualSavedRecipe);
+}
+
+const createSavedSpoonacularRecipe = async (req, res) => {
+    const userId = req.params.uid;
+    const spoonacularId = req.params.rid;
+    const actualSavedRecipe = await savedRecipesDao.createSavedSpoonacularRecipe(userId, spoonacularId);
     res.json(actualSavedRecipe);
 }
 
@@ -32,6 +45,12 @@ const findSavedRecipeById = async (req, res) => {
 const findSavedRecipesByUser = async (req, res) => {
     const userId = req.params.uid;
     const savedRecipes = await savedRecipesDao.findSavedRecipesByUser(userId);
+    res.send(savedRecipes);
+}
+
+const findSavedSpoonacularRecipesByUser = async (req, res) => {
+    const userId = req.params.uid;
+    const savedRecipes = await savedRecipesDao.findSavedSpoonacularRecipesByUser(userId);
     res.send(savedRecipes);
 }
 
