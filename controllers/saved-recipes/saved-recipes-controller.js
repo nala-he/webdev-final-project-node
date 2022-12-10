@@ -1,8 +1,4 @@
 import * as savedRecipesDao from "./saved-recipes-dao.js";
-import {
-    createSavedSpoonacularRecipe,
-    findSavedSpoonacularRecipeByUser
-} from "./saved-recipes-dao.js";
 
 const SavedRecipesController = (app) => {
     app.post('/fridge/users/:uid/saved-recipes/:rid', createSavedRecipe);
@@ -15,6 +11,8 @@ const SavedRecipesController = (app) => {
     app.put('/fridge/saved-recipes/:savedRecipeId', updateSavedRecipe);
     app.delete('/fridge/saved-recipes/:savedRecipeId', deleteSavedRecipe);
     app.delete('/fridge/users/:uid/recipes/:rid/saved-recipes', deleteSavedRecipeByUserAndRecipeId);
+    app.delete('/fridge/saved-spoonaculars/:spoonacularId', deleteSavedSpoonacularRecipe);
+
 }
 
 const createSavedRecipe = async (req, res) => {
@@ -77,6 +75,12 @@ const deleteSavedRecipeByUserAndRecipeId = async (req, res) => {
     const uid = req.params.uid;
     const rid = req.params.rid;
     const status = await savedRecipesDao.deleteSavedRecipeByUserAndRecipeId(uid, rid);
+    res.send(status);
+}
+
+const deleteSavedSpoonacularRecipe = async (req, res) => {
+    const spoonacularId = req.params['spoonacularId'];
+    const status = await savedRecipesDao.deleteSavedSpoonacularRecipe(spoonacularId);
     res.send(status);
 }
 

@@ -49,12 +49,12 @@ export const findSavedRecipesByUser = async (uid) => {
 }
 
 export const findSavedSpoonacularRecipesByUser = async (uid) => {
-    const recipeSavedByUser =
+    const spoonacularSavedByUser =
         await savedRecipesModel
             .find({savedBy: uid})
             .populate("spoonacularRecipe")
             .exec();
-    return recipeSavedByUser;
+    return spoonacularSavedByUser;
 }
 
 
@@ -85,3 +85,5 @@ export const deleteSavedRecipeByUserAndRecipeId = async (uid, rid) => {
     return status;
 }
 
+export const deleteSavedSpoonacularRecipe = async (rid) =>
+    await savedRecipesModel.deleteOne({spoonacularRecipe: rid})
