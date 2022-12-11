@@ -5,7 +5,8 @@ export const createSavedRecipe = async (uid, rid) => {
         await savedRecipesModel.create(
             {
                 savedBy: uid,
-                recipe: rid
+                recipe: rid,
+                spoonacularRecipe: null
             });
     return actualSavedRecipe;
 }
@@ -15,7 +16,8 @@ export const createSavedSpoonacularRecipe = async (uid, rid) => {
         await savedRecipesModel.create(
             {
                 savedBy: uid,
-                spoonacularRecipe: rid
+                spoonacularRecipe: rid,
+                recipe: null,
             }
         )
     return actualSavedRecipe;
@@ -43,6 +45,7 @@ export const findSavedRecipesByUser = async (uid) => {
     const recipesSavedByUser =
         await savedRecipesModel
             .find({savedBy: uid})
+            .find({recipe: {$ne: null}})
             .populate("recipe")
             .exec();
     return recipesSavedByUser;
@@ -52,6 +55,7 @@ export const findSavedSpoonacularRecipesByUser = async (uid) => {
     const spoonacularSavedByUser =
         await savedRecipesModel
             .find({savedBy: uid})
+            .find({spoonacularRecipe: {$ne: null}})
             .populate("spoonacularRecipe")
             .exec();
     return spoonacularSavedByUser;
