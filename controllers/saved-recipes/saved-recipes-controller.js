@@ -11,7 +11,7 @@ const SavedRecipesController = (app) => {
     app.put('/fridge/saved-recipes/:savedRecipeId', updateSavedRecipe);
     app.delete('/fridge/saved-recipes/:savedRecipeId', deleteSavedRecipe);
     app.delete('/fridge/users/:uid/recipes/:rid/saved-recipes', deleteSavedRecipeByUserAndRecipeId);
-    app.delete('/fridge/saved-spoonaculars/:spoonacularId', deleteSavedSpoonacularRecipe);
+    app.delete('/fridge/users/:uid/recipes/:rid/saved-spoonaculars', deleteSavedSpoonacularRecipeByUserAndRecipeId);
 
 }
 
@@ -78,9 +78,10 @@ const deleteSavedRecipeByUserAndRecipeId = async (req, res) => {
     res.send(status);
 }
 
-const deleteSavedSpoonacularRecipe = async (req, res) => {
-    const spoonacularId = req.params['spoonacularId'];
-    const status = await savedRecipesDao.deleteSavedSpoonacularRecipe(spoonacularId);
+const deleteSavedSpoonacularRecipeByUserAndRecipeId = async (req, res) => {
+    const uid = req.params.uid;
+    const rid = req.params.rid;
+    const status = await savedRecipesDao.deleteSavedSpoonacularRecipeByUserAndRecipeId(uid, rid);
     res.send(status);
 }
 
