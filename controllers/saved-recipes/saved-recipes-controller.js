@@ -1,4 +1,5 @@
 import * as savedRecipesDao from "./saved-recipes-dao.js";
+import * as usersDao from "../users/users-dao.js";
 
 const SavedRecipesController = (app) => {
     app.post('/fridge/users/:uid/saved-recipes/:rid', createSavedRecipe);
@@ -18,15 +19,27 @@ const SavedRecipesController = (app) => {
 const createSavedRecipe = async (req, res) => {
     const userId = req.params.uid;
     const recipeId = req.params.rid;
-    const actualSavedRecipe = await savedRecipesDao.createSavedRecipe(userId, recipeId);
-    res.json(actualSavedRecipe);
+    const existingRecipe = await savedRecipesDao.findSavedRecipesByUser(userId);
+    if (existingRecipe === recipeId) {
+        res.sendStatus(403);
+        return;
+    } else {
+        const actualSavedRecipe = await savedRecipesDao.createSavedRecipe(userId, recipeId);
+        res.json(actualSavedRecipe);
+    }
 }
 
 const createSavedSpoonacularRecipe = async (req, res) => {
     const userId = req.params.uid;
     const spoonacularId = req.params.rid;
-    const actualSavedRecipe = await savedRecipesDao.createSavedSpoonacularRecipe(userId, spoonacularId);
-    res.json(actualSavedRecipe);
+    const existingRecipe = await savedRecipesDao.findSavedSpoonacularRecipesByUser(userId);
+    if (existingRecipe === spoonacularId) {
+        res.sendStatus(403);
+        return;
+    } else {
+        const actualSavedRecipe = await savedRecipesDao.createSavedSpoonacularRecipe(userId, spoonacularId);
+        res.json(actualSavedRecipe);
+    }
 }
 
 const findAllSavedRecipes = async (req, res) => {
