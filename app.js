@@ -19,7 +19,7 @@ import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-co
 
 const app = express();
 const corsConfig = {
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://team21-fridge-recipes-webdev.netlify.app/'],
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
     credentials: true,
     optionSuccessStatus: 200,
@@ -51,7 +51,7 @@ mongoose.connect(connectionString)
 
 let sess = {
     // secret: process.env.REACT_APP_API_BASE,
-    secret: "http://localhost:3000",
+    secret: ["http://localhost:4000"],
     cookie: {
         secure: false
     },
