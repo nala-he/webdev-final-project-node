@@ -6,17 +6,19 @@ export const createSavedRecipe = async (uid, rid) => {
             {
                 savedBy: uid,
                 recipe: rid,
-                spoonacularRecipe: null
+                spoonacularRecipe: null,
+                spoonacularName: null
             });
     return actualSavedRecipe;
 }
 
-export const createSavedSpoonacularRecipe = async (uid, rid) => {
+export const createSavedSpoonacularRecipe = async (uid, rid, name) => {
     const actualSavedRecipe =
         await savedRecipesModel.create(
             {
                 savedBy: uid,
                 spoonacularRecipe: rid,
+                spoonacularName: name,
                 recipe: null,
             }
         )

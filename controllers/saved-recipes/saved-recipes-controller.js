@@ -32,12 +32,15 @@ const createSavedRecipe = async (req, res) => {
 const createSavedSpoonacularRecipe = async (req, res) => {
     const userId = req.params.uid;
     const spoonacularId = req.params.rid;
+    const spoonacularName = req.body.spoonacularName;
     const existingRecipe = await savedRecipesDao.findSavedSpoonacularRecipesByUser(userId);
     if (existingRecipe === spoonacularId) {
         res.sendStatus(403);
         return;
     } else {
-        const actualSavedRecipe = await savedRecipesDao.createSavedSpoonacularRecipe(userId, spoonacularId);
+        const actualSavedRecipe = await savedRecipesDao.createSavedSpoonacularRecipe(userId,
+                                                                                     spoonacularId,
+                                                                                     spoonacularName);
         res.json(actualSavedRecipe);
     }
 }
