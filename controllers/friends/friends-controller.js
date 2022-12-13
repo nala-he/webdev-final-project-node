@@ -10,12 +10,20 @@ const FriendsController = (app) => {
 }
 
 const followUser = async (req, res) => {
-    const follow = {
-        followedBy: req.session['currentUser'],
-        following: req.params.uid
+    const me = req.session['currentUser'];
+    const following = req.params.uid;
+    const existingFollowing = await friendsDao.findUsersIamFollowing(me);
+    if (existingFollowing === following) {
+        res.sendStatus(403);
+        return;
+    } else {
+        const follow = {
+            followedBy: me,
+            following: following
+        };
+        const actualFollow = await friendsDao.followUser(follow);
+        res.json(actualFollow);
     }
-    const actualFollow = await friendsDao.followUser(follow);
-    res.json(actualFollow)
 }
 
 const findUsersIamFollowing = async (req, res) => {

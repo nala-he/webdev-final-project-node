@@ -1,7 +1,7 @@
 import friendsModel from "./friends-model.js";
 
 export const followUser = (following) =>
-    friendsModel.create(following)
+    friendsModel.create(following);
 
 export const findUsersIamFollowing = (followedBy) =>
     friendsModel.find({followedBy})
