@@ -13,7 +13,8 @@ const followUser = async (req, res) => {
     const me = req.session['currentUser'];
     const following = req.params.uid;
     const existingFollowing = await friendsDao.findUsersIamFollowing(me);
-    if (existingFollowing === following) {
+    const existed = existingFollowing.filter(each => each.following._id.toString() === following);
+    if (existed.length > 0) {
         res.sendStatus(403);
         return;
     } else {
