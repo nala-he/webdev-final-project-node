@@ -19,7 +19,7 @@ import SavedRecipesController from "./controllers/saved-recipes/saved-recipes-co
 
 const app = express();
 const corsConfig = {
-    origin: ['http://localhost:3000', 'https://team21-fridge-recipes-webdev.netlify.app/'],
+    origin: ['http://localhost:3000', 'https://team21-fridge-recipes-webdev.netlify.app'],
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
     credentials: true,
     optionSuccessStatus: 200,
